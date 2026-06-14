@@ -1,0 +1,398 @@
+{
+    "model_1": {
+        "model_id": 1,
+        "layers": 3,
+        "width": 128,
+        "layer_sizes": [
+            128,
+            64,
+            32
+        ],
+        "architecture_text": "def __init__(self):\n        super().__init__()\n        self.fc1 = nn.Linear(17, 128)\n        self.fc2 = nn.Linear(128, 64)\n        self.fc3 = nn.Linear(64, 32)\n        self.drop = nn.Dropout(0.2)\n        self.out = nn.Linear(32, 2)  # Binary classification: 0 (No) or 1 (Yes)\n\n    def forward(self, x):\n        x = F.relu(self.fc1(x))\n        x = self.drop(x)\n        x = F.relu(self.fc2(x))\n        x = self.drop(x)\n        x = F.relu(self.fc3(x))",
+        "accuracy": 0.89952,
+        "precision": 0.8622270742358079,
+        "recall": 0.8905286895514909,
+        "f1_score": 0.8761493898681129,
+        "auc_roc": 0.9680210394651905,
+        "confusion_matrix": [
+            [
+                108822,
+                11358
+            ],
+            [
+                8738,
+                71082
+            ]
+        ],
+        "train_loss": 0.26619994728267193,
+        "valid_loss": 0.23484923307779731,
+        "epoch": 90,
+        "total_inference_time": 0.10714991799977724,
+        "avg_time_per_sample_ms": 0.0005357495899988863,
+        "samples_per_second": 1866543.6589546974
+    },
+    "model_2": {
+        "model_id": 2,
+        "layers": 3,
+        "width": 256,
+        "layer_sizes": [
+            256,
+            128,
+            64
+        ],
+        "architecture_text": "3 wider layers\n    def __init__(self):\n        super().__init__()\n        self.fc1 = nn.Linear(17, 256)\n        self.fc2 = nn.Linear(256, 128)\n        self.fc3 = nn.Linear(128, 64)\n        self.drop = nn.Dropout(0.2)\n        self.out = nn.Linear(64, 2)  # Binary classification: 0 (No) or 1 (Yes)\n\n    def forward(self, x):\n        x = F.relu(self.fc1(x))\n        x = self.drop(x)\n        x = F.relu(self.fc2(x))\n        x = self.drop(x)\n        x = F.relu(self.fc3(x))",
+        "accuracy": 0.916645,
+        "precision": 0.8842348646181929,
+        "recall": 0.910323227261338,
+        "f1_score": 0.8970894163400105,
+        "auc_roc": 0.976924264953526,
+        "confusion_matrix": [
+            [
+                110667,
+                9513
+            ],
+            [
+                7158,
+                72662
+            ]
+        ],
+        "train_loss": 0.23179870612174272,
+        "valid_loss": 0.2013663457312114,
+        "epoch": 45,
+        "total_inference_time": 0.008935084999393439,
+        "avg_time_per_sample_ms": 4.467542499696719e-05,
+        "samples_per_second": 22383670.6660963
+    },
+    "model_3": {
+        "model_id": 3,
+        "layers": 3,
+        "width": 512,
+        "layer_sizes": [
+            512,
+            256,
+            128
+        ],
+        "architecture_text": "3 layers widerer\n        super().__init__()\n        self.fc1 = nn.Linear(17, 512)\n        self.fc2 = nn.Linear(512, 256)\n        self.fc3 = nn.Linear(256, 128)\n        self.drop = nn.Dropout(0.2)\n        self.out = nn.Linear(128, 2)  # Binary classification: 0 (No) or 1 (Yes)\n\n    def forward(self, x):\n        x = F.relu(self.fc1(x))\n        x = self.drop(x)\n        x = F.relu(self.fc2(x))\n        x = self.drop(x)\n        x = F.relu(self.fc3(x))",
+        "accuracy": 0.92784,
+        "precision": 0.9014686379488187,
+        "recall": 0.9197193685793035,
+        "f1_score": 0.910502554943692,
+        "auc_roc": 0.9828402518580771,
+        "confusion_matrix": [
+            [
+                112156,
+                8024
+            ],
+            [
+                6408,
+                73412
+            ]
+        ],
+        "train_loss": 0.19387200540304184,
+        "valid_loss": 0.171540875829189,
+        "epoch": 141,
+        "total_inference_time": 0.020837150999795995,
+        "avg_time_per_sample_ms": 0.00010418575499897998,
+        "samples_per_second": 9598241.141601272
+    },
+    "model_4": {
+        "model_id": 4,
+        "layers": 3,
+        "width": 1024,
+        "layer_sizes": [
+            1024,
+            512,
+            256
+        ],
+        "architecture_text": "",
+        "accuracy": 0.92745,
+        "precision": 0.8957798031706017,
+        "recall": 0.9259458782260085,
+        "f1_score": 0.9106130796905032,
+        "auc_roc": 0.9826573421313781,
+        "confusion_matrix": [
+            [
+                111581,
+                8599
+            ],
+            [
+                5911,
+                73909
+            ]
+        ],
+        "train_loss": null,
+        "valid_loss": null,
+        "epoch": null,
+        "total_inference_time": 0.05979170700084069,
+        "avg_time_per_sample_ms": 0.0002989585350042035,
+        "samples_per_second": 3344945.4787632665
+    },
+    "model_5": {
+        "model_id": 5,
+        "layers": 4,
+        "width": 128,
+        "layer_sizes": [
+            128,
+            64,
+            32,
+            16
+        ],
+        "architecture_text": "+ 1 layer\n    def __init__(self):\n        super().__init__()\n        self.fc1 = nn.Linear(17, 128)\n        self.fc2 = nn.Linear(128, 64)\n        self.fc3 = nn.Linear(64, 32)\n        self.fc4 = nn.Linear(32, 16)\n        self.drop = nn.Dropout(0.2)\n        self.out = nn.Linear(16, 2)\n\n    def forward(self, x):\n        x = F.relu(self.fc1(x))\n        x = self.drop(x)\n        x = F.relu(self.fc2(x))\n        x = self.drop(x)\n        x = F.relu(self.fc3(x))\n        x = self.drop(x)\n        x = F.relu(self.fc4(x))\n(",
+        "accuracy": 0.894035,
+        "precision": 0.8564081364669835,
+        "recall": 0.8824480080180406,
+        "f1_score": 0.8692330949545558,
+        "auc_roc": 0.9645999389686039,
+        "confusion_matrix": [
+            [
+                108370,
+                11810
+            ],
+            [
+                9383,
+                70437
+            ]
+        ],
+        "train_loss": null,
+        "valid_loss": null,
+        "epoch": 44,
+        "total_inference_time": 0.004604947000188986,
+        "avg_time_per_sample_ms": 2.302473500094493e-05,
+        "samples_per_second": 43431553.06495211
+    },
+    "model_6": {
+        "model_id": 6,
+        "layers": 4,
+        "width": 256,
+        "layer_sizes": [
+            256,
+            128,
+            64,
+            32
+        ],
+        "architecture_text": "4 wider layers\n\n        super().__init__()\n        self.fc1 = nn.Linear(17, 256)\n        self.fc2 = nn.Linear(256, 128)\n        self.fc3 = nn.Linear(128, 64)\n        self.fc4 = nn.Linear(64, 32)\n        self.drop = nn.Dropout(0.2)\n        self.out = nn.Linear(32, 2)  # Binary classification: 0 (No) or 1 (Yes)\n\n    def forward(self, x):\n        x = F.relu(self.fc1(x))\n        x = self.drop(x)\n        x = F.relu(self.fc2(x))\n        x = self.drop(x)\n        x = F.relu(self.fc3(x))\n        x = self.drop(x)\n        x = F.relu(self.fc4(x))",
+        "accuracy": 0.91667,
+        "precision": 0.8798599749783467,
+        "recall": 0.9163242295164119,
+        "f1_score": 0.8977219726538528,
+        "auc_roc": 0.9774509445011469,
+        "confusion_matrix": [
+            [
+                110193,
+                9987
+            ],
+            [
+                6679,
+                73141
+            ]
+        ],
+        "train_loss": 0.22979763603210449,
+        "valid_loss": 0.19792687547794155,
+        "epoch": 82,
+        "total_inference_time": 0.009279204000449681,
+        "avg_time_per_sample_ms": 4.63960200022484e-05,
+        "samples_per_second": 21553572.91318391
+    },
+    "model_7": {
+        "model_id": 7,
+        "layers": 4,
+        "width": 512,
+        "layer_sizes": [
+            512,
+            256,
+            128,
+            64
+        ],
+        "architecture_text": "4 widerer layers\n    def __init__(self):\n        super().__init__()\n        self.fc1 = nn.Linear(17, 512)\n        self.fc2 = nn.Linear(512, 256)\n        self.fc3 = nn.Linear(256, 128)\n        self.fc4 = nn.Linear(128, 64)\n        self.drop = nn.Dropout(0.2)\n        self.out = nn.Linear(64, 2)  # Binary classification: 0 (No) or 1 (Yes)\n\n    def forward(self, x):\n        x = F.relu(self.fc1(x))\n        x = self.drop(x)\n        x = F.relu(self.fc2(x))\n        x = self.drop(x)\n        x = F.relu(self.fc3(x))\n        x = self.drop(x)\n        x = F.relu(self.fc4(x))\n        return self.out(x)",
+        "accuracy": 0.92583,
+        "precision": 0.8874856897538638,
+        "recall": 0.9323603106990729,
+        "f1_score": 0.9093697304430705,
+        "auc_roc": 0.9829632008910545,
+        "confusion_matrix": [
+            [
+                110745,
+                9435
+            ],
+            [
+                5399,
+                74421
+            ]
+        ],
+        "train_loss": 0.19485842487961053,
+        "valid_loss": 0.17091901292899292,
+        "epoch": 177,
+        "total_inference_time": 0.021984832000271126,
+        "avg_time_per_sample_ms": 0.00010992416000135563,
+        "samples_per_second": 9097181.183714913
+    },
+    "model_8": {
+        "model_id": 8,
+        "layers": 4,
+        "width": 1024,
+        "layer_sizes": [
+            1024,
+            512,
+            256,
+            128
+        ],
+        "architecture_text": "4 widest\n    def __init__(self):\n        super().__init__()\n        self.fc1 = nn.Linear(17, 1024)\n        self.fc2 = nn.Linear(1024, 512)\n        self.fc3 = nn.Linear(512, 256)\n        self.fc4 = nn.Linear(256, 128)\n\n        self.drop = nn.Dropout(0.2)\n        self.out = nn.Linear(128, 2)  # Binary classification: 0 (No) or 1 (Yes)\n\n    def forward(self, x):\n        x = F.relu(self.fc1(x))\n        x = self.drop(x)\n        x = F.relu(self.fc2(x))\n        x = self.drop(x)\n        x = F.relu(self.fc3(x))\n        x = self.drop(x)\n        x = F.relu(self.fc4(x))",
+        "accuracy": 0.927945,
+        "precision": 0.8945673024720402,
+        "recall": 0.9289401152593335,
+        "f1_score": 0.9114297479518398,
+        "auc_roc": 0.9836034736211059,
+        "confusion_matrix": [
+            [
+                111441,
+                8739
+            ],
+            [
+                5672,
+                74148
+            ]
+        ],
+        "train_loss": 0.18159828375279904,
+        "valid_loss": 0.16632220797331304,
+        "epoch": 87,
+        "total_inference_time": 0.06238064500030305,
+        "avg_time_per_sample_ms": 0.00031190322500151523,
+        "samples_per_second": 3206122.6683216947
+    },
+    "model_9": {
+        "model_id": 9,
+        "layers": 5,
+        "width": 128,
+        "layer_sizes": [
+            128,
+            64,
+            32,
+            16,
+            8
+        ],
+        "architecture_text": "5 layers\n    def __init__(self):\n        super().__init__()\n        self.fc1 = nn.Linear(17, 128)\n        self.fc2 = nn.Linear(128, 64)\n        self.fc3 = nn.Linear(64, 32)\n        self.fc4 = nn.Linear(32, 16)\n        self.fc5 = nn.Linear(16, 8)\n\n        self.drop = nn.Dropout(0.2)\n        self.out = nn.Linear(8, 2)  # Binary classification: 0 (No) or 1 (Yes)\n\n    def forward(self, x):\n        x = F.relu(self.fc1(x))\n        x = self.drop(x)\n        x = F.relu(self.fc2(x))\n        x = self.drop(x)\n        x = F.relu(self.fc3(x))\n        x = self.drop(x)\n        x = F.relu(self.fc4(x))\n        x = self.drop(x)\n        x = F.relu(self.fc5(x))",
+        "accuracy": 0.896365,
+        "precision": 0.8657514576086552,
+        "recall": 0.8761964419944877,
+        "f1_score": 0.8709426349445527,
+        "auc_roc": 0.9657059580490619,
+        "confusion_matrix": [
+            [
+                109335,
+                10845
+            ],
+            [
+                9882,
+                69938
+            ]
+        ],
+        "train_loss": 0.2766260254979134,
+        "valid_loss": 0.262839756,
+        "epoch": 64,
+        "total_inference_time": 0.0047566319999532425,
+        "avg_time_per_sample_ms": 2.3783159999766212e-05,
+        "samples_per_second": 42046557.312393725
+    },
+    "model_10": {
+        "model_id": 10,
+        "layers": 5,
+        "width": 256,
+        "layer_sizes": [
+            256,
+            128,
+            64,
+            32,
+            16
+        ],
+        "architecture_text": "5 widerer layers:\n        super().__init__()\n        self.fc1 = nn.Linear(17, 256)\n        self.fc2 = nn.Linear(256, 128)\n        self.fc3 = nn.Linear(128, 64)\n        self.fc4 = nn.Linear(64, 32)\n        self.fc5 = nn.Linear(32, 16)\n\n        self.drop = nn.Dropout(0.2)\n        self.out = nn.Linear(16, 2)  # Binary classification: 0 (No) or 1 (Yes)\n\n    def forward(self, x):\n        x = F.relu(self.fc1(x))\n        x = self.drop(x)\n        x = F.relu(self.fc2(x))\n        x = self.drop(x)\n        x = F.relu(self.fc3(x))\n        x = self.drop(x)\n        x = F.relu(self.fc4(x))\n        x = self.drop(x)\n        x = F.relu(self.fc5(x))",
+        "accuracy": 0.91738,
+        "precision": 0.8934361014420686,
+        "recall": 0.9003758456527187,
+        "f1_score": 0.8968925496068888,
+        "auc_roc": 0.9766629990077107,
+        "confusion_matrix": [
+            [
+                111608,
+                8572
+            ],
+            [
+                7952,
+                71868
+            ]
+        ],
+        "train_loss": 0.23266190446913243,
+        "valid_loss": 0.21296924537599507,
+        "epoch": 75,
+        "total_inference_time": 0.009536748999380507,
+        "avg_time_per_sample_ms": 4.768374499690253e-05,
+        "samples_per_second": 20971507.16800785
+    },
+    "model_11": {
+        "model_id": 11,
+        "layers": 5,
+        "width": 512,
+        "layer_sizes": [
+            512,
+            256,
+            128,
+            64,
+            32
+        ],
+        "architecture_text": "5 widererer layers:\n    def __init__(self):\n        super().__init__()\n        self.fc1 = nn.Linear(17, 512)\n        self.fc2 = nn.Linear(512, 256)\n        self.fc3 = nn.Linear(256, 128)\n        self.fc4 = nn.Linear(128, 64)\n        self.fc5 = nn.Linear(64, 32)\n        self.drop = nn.Dropout(0.2)\n        self.out = nn.Linear(32, 2)  # Binary classification: 0 (No) or 1 (Yes)\n\n    def forward(self, x):\n        x = F.relu(self.fc1(x))\n        x = self.drop(x)\n        x = F.relu(self.fc2(x))\n        x = self.drop(x)\n        x = F.relu(self.fc3(x))\n        x = self.drop(x)\n        x = F.relu(self.fc4(x))\n        x = self.drop(x)\n        x = F.relu(self.fc5(x))",
+        "accuracy": 0.92071,
+        "precision": 0.8847662359537044,
+        "recall": 0.9213229766975696,
+        "f1_score": 0.9026746369784826,
+        "auc_roc": 0.9800301633493134,
+        "confusion_matrix": [
+            [
+                110602,
+                9578
+            ],
+            [
+                6280,
+                73540
+            ]
+        ],
+        "train_loss": 0.21391450467705728,
+        "valid_loss": 0.1903755877045432,
+        "epoch": 38,
+        "total_inference_time": 0.02284656600022572,
+        "avg_time_per_sample_ms": 0.0001142328300011286,
+        "samples_per_second": 8754050.827508345
+    },
+    "model_12": {
+        "model_id": 12,
+        "layers": 5,
+        "width": 1024,
+        "layer_sizes": [
+            1024,
+            512,
+            256,
+            128,
+            64
+        ],
+        "architecture_text": "5 widest",
+        "accuracy": 0.93156,
+        "precision": 0.9032340674617693,
+        "recall": 0.9279253319969932,
+        "f1_score": 0.9154132318226199,
+        "auc_roc": 0.9846696951670131,
+        "confusion_matrix": [
+            [
+                112245,
+                7935
+            ],
+            [
+                5753,
+                74067
+            ]
+        ],
+        "train_loss": 0.1740502833351493,
+        "valid_loss": 0.1617019960677021,
+        "epoch": 98,
+        "total_inference_time": 0.06381630000032601,
+        "avg_time_per_sample_ms": 0.0003190815000016301,
+        "samples_per_second": 3133995.546576318
+    }
+}
