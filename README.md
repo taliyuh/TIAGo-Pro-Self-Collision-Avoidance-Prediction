@@ -35,8 +35,6 @@ streamlit run app.py
 
 ## Script Directory
 
-The python scripts in the workspace have been organized and renamed to reflect their exact functions:
-
 ### 1. `generate_collision_dataset.py`
 *   **Purpose:** A ROS2 node that samples random joint positions within limits and uses the MoveIt `/check_state_validity` service to check for self-collision.
 *   **Output:** Generates a CSV file containing joint coordinates, a binary `collision` indicator, and the `num_contacts` count.
@@ -45,37 +43,41 @@ The python scripts in the workspace have been organized and renamed to reflect t
     python3 generate_collision_dataset.py --output tiago_collision_dataset.csv --samples 1000 --seed 42
     ```
 
-### 2. `train_xgboost.py` (formerly `collision_model.py`)
+### 2. `train_xgboost.py`
 *   **Purpose:** Trains and evaluates an XGBoost classifier as a baseline model on the 1M dataset.
 *   **Usage:**
     ```bash
     python3 train_xgboost.py
     ```
 
-### 3. `train_nn.py` (formerly `network.py`)
+### 3. `train_nn.py`
 *   **Purpose:** Trains a multi-layer PyTorch Neural Network to predict self-collisions.
     *   Features: Early stopping with configurable patience, TensorBoard logging (`runs/`), class weighting to handle imbalance, and a post-training evaluation & sensitivity analysis.
-*   **Configuration:** You can change the active dataset inside the script by modifying `SELECTED_LIST` (line 16):
-    ```python
-    LIST = ['1m', '100k', '10k']
-    SELECTED_LIST = LIST[0] # Change index to select different dataset size
-    ```
 *   **Usage:**
     ```bash
     python3 train_nn.py
     ```
 
-### 4. `evaluate_nn.py` (formerly `model_eval.py`)
-*   **Purpose:** Loads a trained PyTorch model, evaluates it against the test partition, and performs a **sensitivity analysis** (calculating the gradient of the collision probability with respect to the input joint angles $\frac{\partial P_{\text{collision}}}{\partial \theta_j}$). This identifies which joints are most critical for collision prediction.
-*   **Configuration:** To evaluate a different model checkpoint, edit the script and modify the `MODEL_PATH` variable (line 55):
+### 4. `evaluate_nn.py`
+*   **Purpose:** Loads a trained PyTorch model, evaluates it against the test partition, and performs a **sensitivity analysis**
+*   **Configuration:** To evaluate a different model checkpoint, edit the script and modify the `MODEL_PATH` variable (line 53):
     ```python
-    MODEL_PATH = 'model_8.pt'  # Change to the filename of the model checkpoint you want to evaluate
+    MODEL_PATH = 'models/model_1.pt'  # Change to the filename of the model checkpoint you want to evaluate
     ```
+    Ensure that the network architecture (number of layers and their width) matches this of a model.
 *   **Usage:**
     ```bash
     python3 evaluate_nn.py
     ```
 
+### 5. `avoid_collision.py`
+*   **Purpose:** Takes a starting 17-DoF robot configuration, uses a pre-trained PyTorch model to check if it results in a collision, and if so, performs **gradient-based optimization** (gradient descent on the collision logit) to iteratively adjust the joint angles to a collision-free pose. 
+    *   Features: Respects physical joint limits (clipping after each step), supports standard gradient descent, and provides an optional `use_importance_weighting` flag to scale joint steps based on the average absolute gradients (importance score) from the sensitivity analysis.
+*   **Usage:**
+    ```bash
+    python3 avoid_collision.py
+    ```
+    * There are 3 predefined collision sets that the optimiser then iteratively adjusts to reduce collision risk below 10%.
 ---
 
 ## TIAGo Pro Joint Configurations (17 DoF)

@@ -190,7 +190,7 @@ for epoch in range(EPOCHS):
     if avg_vloss < best_vloss:
         best_vloss = avg_vloss
         early_stop_counter = 0
-        best_model_path = f'best_model_{timestamp}.pt'
+        best_model_path = f'models/best_model_{timestamp}.pt'
         torch.save(model.state_dict(), best_model_path)
     else:
         # if not, increase the counter
@@ -210,7 +210,7 @@ for epoch in range(EPOCHS):
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, roc_auc_score
 
 # load the best model (the one with lowest validation loss)
-model.load_state_dict(torch.load(f'best_model_{timestamp}.pt', map_location=device))
+model.load_state_dict(torch.load(f'models/best_model_{timestamp}.pt', map_location=device))
 model.eval()
 
 all_preds = []

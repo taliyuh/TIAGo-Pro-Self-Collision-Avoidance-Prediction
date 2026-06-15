@@ -170,14 +170,14 @@ class DynamicCollisionPredictor(nn.Module):
 @st.cache_resource
 def load_pytorch_model(weights_file, layers):
     model = DynamicCollisionPredictor(layers)
-    model.load_state_dict(torch.load(f"{weights_file}.pt", map_location="cpu"))
+    model.load_state_dict(torch.load(f"models/{weights_file}.pt", map_location="cpu"))
     model.eval()
     return model
 
 @st.cache_resource
 def load_xgboost_model():
     model = xgb.XGBClassifier()
-    model.load_model("xgboost_model.json")
+    model.load_model("models/xgboost_model.json")
     return model
 
 @st.cache_resource

@@ -22,3 +22,6 @@ runs/
 # Temporary/local training checkpoints
 best_model_*.pt
 xgboost_results.txt
+
+# Images
+*.png
