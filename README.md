@@ -2,8 +2,9 @@
 
 This workspace contains code for dataset generation, model training, evaluation, and an interactive dashboard for predicting self-collisions of the **TIAGo Pro robot** (17 Degrees of Freedom). It allows you to train and evaluate both **XGBoost** and **PyTorch Neural Networks** to predict whether a given joint configuration is safe or results in a collision.
 
+
 ---
-![TIAGo in Gazebo Simulator](tiago_gazebo.png)
+![TIAGo in Gazebo Simulator](images/tiago_gazebo.png)
 
 ## Environment Setup & Installation
 
@@ -20,6 +21,8 @@ pip install -r requirements.txt
 ## Running the Streamlit Dashboard
 
 An interactive dashboard is provided to explore the trained models, compare their performance against the XGBoost baseline, and test configurations live.
+
+![Streamlit Dashboard](images/streamlit_dashboard.png)
 
 To launch the Streamlit app:
 ```bash
@@ -80,6 +83,8 @@ streamlit run app.py
     ```
     * There are 3 predefined collision sets that the optimiser then iteratively adjusts to reduce collision risk below 10%.
 ---
+
+![Collision Optimiser](images/collision_avoidance_plot.png)
 
 ## TIAGo Pro Joint Configurations (17 DoF)
 
