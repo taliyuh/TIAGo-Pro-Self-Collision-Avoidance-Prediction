@@ -3,6 +3,7 @@
 This workspace contains code for dataset generation, model training, evaluation, and an interactive dashboard for predicting self-collisions of the **TIAGo Pro robot** (17 Degrees of Freedom). It allows you to train and evaluate both **XGBoost** and **PyTorch Neural Networks** to predict whether a given joint configuration is safe or results in a collision.
 
 ---
+![TIAGo in Gazebo Simulator](tiago_gazebo.png)
 
 ## Environment Setup & Installation
 
